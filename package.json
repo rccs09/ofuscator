@@ -1,0 +1,16 @@
+{
+  "name": "ofuscatorJs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "javascript-obfuscator": "^2.15.5",
+    "load-json-file": "^6.2.0"
+  }
+}
