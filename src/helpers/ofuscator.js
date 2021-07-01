@@ -11,15 +11,16 @@ class Ofuscator{
         this.filePathOut = filePathOut;
     }
 
-   ofuscate(fileName, method){
-       const fOut = this.filePathOut;
-        fs.readFile(this.filePathIn + fileName, "UTF-8", function(err, data) {
+    async ofuscate(fileName, method){
+        const fOut = this.filePathOut;
+        const ofuscateMethod = await FileManager.getConfigJsonFile("./src/config/" + method);
+        await fs.readFile(this.filePathIn + fileName, "UTF-8", function(err, data) {
             if (err) {
                 throw err;
             }
-            const ofuscateMethod = FileManager.getConfigJsonFile("./src/config/" + method);
-            console.log(ofuscateMethod);
+            
             var obfuscationResult = JavaScriptObfuscator.obfuscate(data, ofuscateMethod);
+            //var obfuscationResult = JavaScriptObfuscator.obfuscate(data);
             fs.writeFile(fOut + fileName, obfuscationResult.getObfuscatedCode() , function(err) {
                 if(err) {
                     return console.log(err);
@@ -27,6 +28,7 @@ class Ofuscator{
                 console.log("The file was saved!");
             });
         });
+        
    }
    
 }    
